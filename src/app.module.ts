@@ -6,14 +6,10 @@ import { Post, PostSchema } from './post.schema';
 
 @Module({
   imports: [
-    MongooseModule.forRoot(
-      'mongodb+srv://akashtechuse:Q1myTqoaAih4dYEI@cluster0.xhvxhdt.mongodb.net/social_media',
-    ),
+    MongooseModule.forRoot('you mongo url'),
     MongooseModule.forFeature([{ name: Post.name, schema: PostSchema }]),
   ],
   controllers: [PostController],
   providers: [PostService],
 })
 export class AppModule {}
-
-//mongodb+srv://akashtechuse:Q1myTqoaAih4dYEI@cluster0.xhvxhdt.mongodb.net/
