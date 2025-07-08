@@ -6,7 +6,7 @@ import { Post, PostSchema } from './post.schema';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('you mongo url'),
+    MongooseModule.forRoot('mongodb://mongo-post:27017/postdb'),
     MongooseModule.forFeature([{ name: Post.name, schema: PostSchema }]),
   ],
   controllers: [PostController],

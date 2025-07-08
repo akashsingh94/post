@@ -6,6 +6,13 @@ import { PostService } from './post.service';
 export class PostController {
   constructor(private readonly postService: PostService) {}
 
+  /**
+   * Handles the creation of a new post.
+   *
+   * @param data - The payload containing post data including title, content, and userId.
+   * @returns An object with the status and the created post.
+   * @throws InternalServerErrorException - If there is an error during post creation.
+   */
   @MessagePattern('create_post')
   async handleCreatePost(
     @Payload() data: { title: string; content: string; userId: string },
@@ -19,6 +26,12 @@ export class PostController {
     }
   }
 
+  /**
+   * Retrieves all posts.
+   *
+   * @returns An object with the status and the list of posts.
+   * @throws InternalServerErrorException - If there is an error during fetching posts.
+   */
   @MessagePattern('get_all_posts')
   async handleGetAllPosts() {
     try {
@@ -30,6 +43,13 @@ export class PostController {
     }
   }
 
+  /**
+   * Handles the event when a comment is added to a post.
+   *
+   * @param data - The payload containing the postId of the post to which a comment was added.
+   * @returns An object with the status indicating the comment count was updated.
+   * @throws InternalServerErrorException - If there is an error during updating the comment count.
+   */
   @MessagePattern('comment_added')
   async handleCommentAdded(@Payload() data: { postId: string }) {
     console.log('comment added for ', data.postId);
